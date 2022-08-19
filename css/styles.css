@@ -156,12 +156,26 @@ footer p {
     transform: rotate(360deg);
   }
 }
+   
+#img-login {  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  
+}
 
 .signin {
   width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: auto;
+  text-align: center;
+}
+
+.form-label {
+  padding:1%;
+
 }
 
 #spinner-wrapper {
@@ -187,4 +201,8 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+#login{
+  margin-top: 4%;
 }
