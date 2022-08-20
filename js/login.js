@@ -12,4 +12,4 @@
             alert("success");
             window.location.href = "https://dullkarlmarx.github.io/e-comerce/principal.html";
         }
-    })
+    });
