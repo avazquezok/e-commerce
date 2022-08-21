@@ -10,6 +10,6 @@
         }
         else {
             alert("success");
-            window.location.href = "https://avazquezok.github.io/e-comerce/principal.html";
+            window.location.href = "https://avazquezok.github.io/e-commerce/principal.html";
         }
     });
