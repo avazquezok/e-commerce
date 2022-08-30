@@ -10,6 +10,6 @@ login.addEventListener("click", () => {
         alert("error password must be at least one character");
     } else {
         alert("success");
-        window.location = "/e-commerce/principal.html";
+        window.location = "principal.html";
     }
 });
