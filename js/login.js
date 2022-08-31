@@ -3,7 +3,7 @@ const password = document.getElementById("password");
 const login = document.getElementById("login");
 
 login.addEventListener("click", (e) => {
-e.preventDefault();
+    e.preventDefault();
     if (email.value.length == 0) {
         alert("error email must be at least one character");
     }
@@ -11,6 +11,7 @@ e.preventDefault();
         alert("error password must be at least one character");
     } else {
         console.log(email.value);
-      window.location = "principal.html";
+        localStorage.setItem("email", email.value);
+        window.location = "principal.html";
     }
 });
