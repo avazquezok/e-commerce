@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 let userEmail = localStorage.getItem("email");
-let container = document.getElementById("container");
+let containerNav = document.getElementById("navbarNav");
 
 document.addEventListener("DOMContentLoaded", function () {
-    container.innerHTML += `<p>${userEmail}</p>`;
+    containerNav.innerHTML += `<li class = "nav-link"><a>${userEmail}</a></li>`;
+
 })

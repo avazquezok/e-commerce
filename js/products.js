@@ -1,6 +1,14 @@
 const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 const container = document.getElementById("container");
 
+let userEmail = localStorage.getItem("email");
+let containerNav = document.getElementById("navbarNav");
+
+document.addEventListener("DOMContentLoaded", function () {
+    containerNav.innerHTML += `<li class = "nav-link"><a>${userEmail}</a></li>`;
+
+})
+
 function showData(dataArray) {
     for (const item of dataArray) {
         container.innerHTML += `<div class="list-group-item-action cursor-active">

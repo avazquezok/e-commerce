@@ -5,6 +5,13 @@ let currentCategoriesArray = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
+let userEmail = localStorage.getItem("email");
+let containerNav = document.getElementById("navbarNav");
+
+document.addEventListener("DOMContentLoaded", function () {
+    containerNav.innerHTML += `<li class = "nav-link"><a>${userEmail}</a></li>`;
+
+})
 
 function sortCategories(criteria, array){
     let result = [];
