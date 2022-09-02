@@ -1,17 +1,18 @@
-const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 const container = document.getElementById("container");
 
-let userEmail = localStorage.getItem("email");
-let containerNav = document.getElementById("navbarNav");
 
+let catID = localStorage.getItem("catID");
 document.addEventListener("DOMContentLoaded", function () {
-    containerNav.innerHTML += `<li class = "nav-link"><a>${userEmail}</a></li>`;
+    let urlCat = PRODUCTS_URL + catID + ".json"
+    fetch(urlCat).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        showData(data.products);
+    });
 
-})
-
-function showData(dataArray) {
-    for (const item of dataArray) {
-        container.innerHTML += `<div class="list-group-item-action cursor-active">
+    function showData(dataArray) {
+        for (const item of dataArray) {
+            container.innerHTML += `<div class="list-group-item-action cursor-active">
         <div class="row">
         <div class="col-3">
         <img src="${item.image}" alt="${"imagen"}" class="img-thumbnail" >
@@ -25,11 +26,5 @@ function showData(dataArray) {
         </div>
     </div>
 </div>`;
-    }
-}
-
-fetch(DATA_URL).then(function (response) {
-    return response.json();
-}).then(function (data){
-    showData(data.products);
-});
+        }
+    }})
