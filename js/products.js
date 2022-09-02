@@ -1,7 +1,6 @@
 const container = document.getElementById("container");
-
-
 let catID = localStorage.getItem("catID");
+
 document.addEventListener("DOMContentLoaded", function () {
     let urlCat = PRODUCTS_URL + catID + ".json"
     fetch(urlCat).then(function (response) {
