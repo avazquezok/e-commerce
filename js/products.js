@@ -1,6 +1,7 @@
 const container = document.getElementById("container");
 let catID = localStorage.getItem("catID");
 
+//get products json from PRODUCTS_URL
 document.addEventListener("DOMContentLoaded", function () {
     let urlCat = PRODUCTS_URL + catID + ".json"
     fetch(urlCat).then(function (response) {
@@ -8,10 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }).then(function (data) {
         showData(data.products);
     });
+})
 
-    function showData(dataArray) {
-        for (const item of dataArray) {
-            container.innerHTML += `<div class="list-group-item-action cursor-active">
+//show products
+function showData(dataArray) {
+    for (const item of dataArray) {
+        container.innerHTML += `<div class="list-group-item-action cursor-active">
         <div class="row">
         <div class="col-3">
         <img src="${item.image}" alt="${"imagen"}" class="img-thumbnail" >
@@ -25,5 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
     </div>
 </div>`;
-        }
-    }})
+    }
+}
+
+showData() 
