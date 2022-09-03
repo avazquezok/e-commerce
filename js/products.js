@@ -1,4 +1,4 @@
-const container = document.getElementById("container");
+//get the ID of the currentCategoriesArray
 let catID = localStorage.getItem("catID");
 
 //get products json from PRODUCTS_URL
@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
         showData(data.products);
     });
 })
+
+const container = document.getElementById("container");
 
 //show products
 function showData(dataArray) {

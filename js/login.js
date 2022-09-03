@@ -2,6 +2,7 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const login = document.getElementById("login");
 
+//login 
 login.addEventListener("click", (e) => {
     e.preventDefault();
     if (email.value.length == 0) {

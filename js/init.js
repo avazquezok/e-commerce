@@ -7,9 +7,11 @@ const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
+//get userEmail from Index and put in into localStorage
 let userEmail = localStorage.getItem("email");
 let containerNav = document.getElementById("navbarNav");
 
+//show userEmail in all html top nav
 document.addEventListener("DOMContentLoaded", function () {
     containerNav.innerHTML += `<li class = "nav-link"><a>${userEmail}</a></li>`;
 
