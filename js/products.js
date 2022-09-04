@@ -34,3 +34,11 @@ function showData(dataArray) {
 }
 
 showData() 
+
+const ORDER_ASC_BY_PRODUCT_PRICE = "AZ";
+const ORDER_DESC_BY_PRODUCT_PRICE = "ZA";
+const ORDER_BY_PROD_COUNT = "Cant.";
+let currentCategoriesArray = [];
+let currentSortCriteria = undefined;
+let minCount = undefined;
+let maxCount = undefined;
