@@ -1,5 +1,13 @@
+//getElementById B    
+let sortAscButton = document.getElementById("sortPriceAsc");
+let sortDescButton = document.getElementById("sortPriceDesc");
+let sortByCountButton = document.getElementById("sortByCount"); 
+
+
 //get the ID of the currentCategoriesArray
 let catID = localStorage.getItem("catID");
+
+const container = document.getElementById("productsContainer");
 
 //get products json from PRODUCTS_URL
 document.addEventListener("DOMContentLoaded", function () {
@@ -7,11 +15,30 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(urlCat).then(function (response) {
         return response.json();
     }).then(function (data) {
+        console.log(data.products);
         showData(data.products);
+
+        sortAscButton.addEventListener("click", function(){
+            sortPriceAsc(data.products);
+            container.innerHTML = "";
+            showData(data.products);
+
+        })
+        sortDescButton.addEventListener("click", function(){
+            sortPriceDesc(data.products);
+            container.innerHTML = "";
+            showData(data.products);
+
+        })
+        sortByCountButton.addEventListener("click", function(){
+            sortByCount(data.products);
+            container.innerHTML = "";
+            showData(data.products);
+
+        })
     });
 })
 
-const container = document.getElementById("container");
 
 //show products
 function showData(dataArray) {
@@ -24,21 +51,31 @@ function showData(dataArray) {
         <div class="col">
         <div ckass ="d-flex w-100 justify-content-between">
         <h4>${item.name}</h4>
+        <p class="mb-1">${item.description}</p>
+        <p class="mb-1"> ${item.cost} ${item.currency}</p>
         <small class="text-muted">${item.soldCount} unidades vendidas </small>
         </div>
-        <p class="mb-1">${item.description} ${item.cost} ${item.curerency}</p>
         </div>
     </div>
 </div>`;
     }
 }
 
-showData() 
+showData()
 
-const ORDER_ASC_BY_PRODUCT_PRICE = "AZ";
-const ORDER_DESC_BY_PRODUCT_PRICE = "ZA";
-const ORDER_BY_PROD_COUNT = "Cant.";
-let currentCategoriesArray = [];
-let currentSortCriteria = undefined;
-let minCount = undefined;
-let maxCount = undefined;
+function sortPriceAsc(dataArray) {
+    dataArray.sort((a, b) => {
+        return b.cost - a.cost;
+      });
+}
+
+function sortPriceDesc(dataArray) {
+    dataArray.sort((a, b) => {
+        return a.cost - b.cost;
+      });
+}
+
+function sortByCount(dataArray) {   
+    dataArray.sort((a, b) => {  
+        return b.soldCount- a.soldCount;
+    })}
