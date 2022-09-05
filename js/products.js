@@ -1,4 +1,4 @@
-//getElementById B    
+//buttons of sorting functions
 let sortAscButton = document.getElementById("sortPriceAsc");
 let sortDescButton = document.getElementById("sortPriceDesc");
 let sortByCountButton = document.getElementById("sortByCount"); 
@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 })
 
-
 //show products
 function showData(dataArray) {
     for (const item of dataArray) {
@@ -63,6 +62,7 @@ function showData(dataArray) {
 
 showData()
 
+//sorting data functions
 function sortPriceAsc(dataArray) {
     dataArray.sort((a, b) => {
         return b.cost - a.cost;
