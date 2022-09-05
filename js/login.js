@@ -12,6 +12,7 @@ login.addEventListener("click", (e) => {
         alert("error password must be at least one character");
     } else {
         console.log(email.value);
+        //set email in localStorage
         localStorage.setItem("email", email.value);
         window.location = "principal.html";
     }
