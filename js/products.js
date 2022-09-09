@@ -11,7 +11,7 @@ const container = document.getElementById("productsContainer");
 
 //get products json from PRODUCTS_URL
 document.addEventListener("DOMContentLoaded", function () {
-    let urlCat = PRODUCTS_URL + catID + ".json"
+    let urlCat = PRODUCTS_URL + catID + EXT_TYPE
     fetch(urlCat).then(function (response) {
         return response.json();
     }).then(function (data) {
