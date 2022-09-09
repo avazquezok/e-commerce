@@ -7,6 +7,9 @@ let sortByCountButton = document.getElementById("sortByCount");
 //get the ID of the currentCategoriesArray
 let catID = localStorage.getItem("catID");
 
+//get the ID of the currentProduct
+let productID = localStorage.getItem("productID");
+
 const container = document.getElementById("productsContainer");
 
 //get products json from PRODUCTS_URL
