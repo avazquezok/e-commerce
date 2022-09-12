@@ -45,14 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
 //show products
 function showData(dataArray) {
     for (const item of dataArray) {
-        container.innerHTML += `<div onclick="setProductInfoID(${productInfoID.id})" class="list-group-item-action cursor-active">
+        container.innerHTML += `<div onclick="setProductInfoID(${item.id})" class="list-group-item-action cursor-active">
         <div class="row">
         <div class="col-3">
         <img src="${item.image}" alt="${"imagen"}" class="img-thumbnail" >
         </div>
-        <div class="col">SSSSSSSSSSSSSSS
-        <div ckass ="d-flex w-100 justify-content-between">
+        <div class="col">
         <h4>${item.name}</h4>
+        <div class ="d-flex w-100 justify-content-between">
         <p class="mb-1">${item.description}</p>
         <p class="mb-1"> ${item.cost} ${item.currency}</p>
         <small class="text-muted">${item.soldCount} unidades vendidas </small>
@@ -68,7 +68,7 @@ showData()
 //set product category and redirect to products-info
 function setProductInfoID(id) {
     localStorage.setItem("productInfoID", id);
-    window.location = "products-info.html"
+    window.location = "product-info.html"
 }
 //sorting data functions
 function sortPriceAsc(dataArray) {
