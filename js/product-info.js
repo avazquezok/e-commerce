@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }).then(function (data) {
         console.log(data);
         showData(data);
-        
+
     })
 })
 function showData(item) {
@@ -29,18 +29,15 @@ function showData(item) {
         <p class="mb-1"> ${item.cost} ${item.currency}</p>
         <small class="text-muted">${item.soldCount} unidades vendidas </small>
         </div>
-        <div class="col-md-12"><img src="${item.images}"</div>
+        
+               
         </div>
         </div>    
 </div>`;
-    for (let item of dataArray) {
-        imagesContainer += `<div class="mb-1">
-        img src="${images}"</div>`;
+    for (images of item.images) {
+        container.innerHTML += `<div class="col-md-12">
+
+      <img src="${images}"</div>`;
+        console.log(container); //  );
     }
 }
-function showImages(images) {
-    for (let image of images) {
-        imagesContainer += `<div class="mb-1"><img src=${images}" /></div>`;
-    }
-}
-showImages(images);
