@@ -1,7 +1,7 @@
 //get the ID of the currentProduct
 let productInfoID = localStorage.getItem("productInfoID");
 let container = document.getElementById("productsInfoContainer");
-let imagesContainer = document.getElementById("imagesContainer");
+let commentsContainer = document.getElementById("imagesContainer");
 console.log(productInfoID);
 
 //get products json from PRODUCTS_URL
@@ -13,10 +13,24 @@ document.addEventListener("DOMContentLoaded", function () {
         return response.json();
     }).then(function (data) {
         console.log(data);
-        showData(data);
+        showData(data);    
+        console.log("")
 
     })
-})
+    let productComment = PRODUCT_INFO_COMMENTS_URL + productInfoID + EXT_TYPE
+    console.log(productComment); //
+    fetch(productComment).then(function (response) {
+        console.log("sadas")
+        return response.json();
+        console.log("dsadsad"); //
+    }).then(function (item) {
+        console.log("bbb")
+        showComment(item);
+
+    })
+}
+)
+
 function showData(item) {
 
     container.innerHTML += `  
@@ -40,4 +54,26 @@ function showData(item) {
       <img src="${images}"</div>`;
         console.log(container); //  );
     }
+
 }
+
+function showComment(item) {
+    for (const data of item) {
+        container.innerHTML +=  
+        `<br/>
+        <div class="col-md-8">
+        <h2>${data.product}</h2>
+        <div class ="d-flex w-100 justify-content-between">
+        <div class="col-md-6">
+        <p class="mb-1">${data.score}</p>
+        <p class="mb-1"> ${data.description}</p>
+        <p class="mb-1"> ${data.dateTime}</p>
+        <small class="text-muted">${data.user} unidades vendidas </small>
+        </div>
+        
+               
+        </div>
+           
+</div>` }} 
+showComment(item);
+
