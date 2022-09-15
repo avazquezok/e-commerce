@@ -1,7 +1,10 @@
 //get the ID of the currentProduct
 let productInfoID = localStorage.getItem("productInfoID");
+//get containers id`s
 let container = document.getElementById("productsInfoContainer");
-let commentsContainer = document.getElementById("imagesContainer");
+let commentsContainer = document.getElementById("commentsContainer");
+let imagesContainer = document.getElementById("imagesContainer");
+
 console.log(productInfoID);
 
 //get products json from PRODUCTS_URL
@@ -13,10 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
         return response.json();
     }).then(function (data) {
         console.log(data);
-        showData(data);    
+        showData(data);
+        showImages(data);
         console.log("")
 
     })
+    //get comments json from PRODUCT_INFO_COMMENTS_URL
     let productComment = PRODUCT_INFO_COMMENTS_URL + productInfoID + EXT_TYPE
     console.log(productComment); //
     fetch(productComment).then(function (response) {
@@ -35,45 +40,68 @@ function showData(item) {
 
     container.innerHTML += `  
     <br/>              
-        <div class="col-md-8">
-                <h2>${item.name}</h2>
+    <div class="col-md-8">
+       <h1 class="title mb-6">${item.name}</h1>
         <div class ="d-flex w-100 justify-content-between">
-        <div class="col-md-6">
-        <p class="mb-1">${item.description}</p>
-        <p class="mb-1"> ${item.cost} ${item.currency}</p>
-        <small class="text-muted">${item.soldCount} unidades vendidas </small>
-        </div>
-        
-               
-        </div>
-        </div>    
-</div>`;
+                <div class="col-md-6">
+                    <p class="mb-0">${item.description}</p>
+                    <p class="mb-0"> ${item.cost} ${item.currency}</p>
+                    <small class="text-muted">${item.soldCount} unidades vendidas </small>
+                </div>    
+         </div>        
+    </div>`
+}
+
+function showImages(item) {
+
+    imagesContainer.innerHTML +=
+        `<div id="controlsCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div id="containerCarousel" class="carousel-inner">
+            </div>
+            </div>
+            `
+            ;
+    const containerCarousel = document.getElementById('containerCarousel');
     for (images of item.images) {
-        container.innerHTML += `<div class="col-md-12">
 
-      <img src="${images}"</div>`;
-        console.log(container); //  );
-    }
+        containerCarousel.innerHTML +=
+            `<div class="carousel-item">
+            <img class="d-block w-100" src="${images}" alt="First slide">
+        </div>`;
+            }
+            const controlsCarousel = document.getElementById('controlsCarousel')
 
+    controlsCarousel.innerHTML +=
+        `
+        <button class="carousel-control-prev" type="button" data-bs-target="#controlsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#controlsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+       
+  `;
+    const active = document.getElementsByClassName('carousel-item')
+    active[0].classList.add('active')
 }
 
 function showComment(item) {
+
     for (const data of item) {
-        container.innerHTML +=  
-        `<br/>
-        <div class="col-md-8">
-        <h2>${data.product}</h2>
-        <div class ="d-flex w-100 justify-content-between">
-        <div class="col-md-6">
-        <p class="mb-1">${data.score}</p>
-        <p class="mb-1"> ${data.description}</p>
-        <p class="mb-1"> ${data.dateTime}</p>
-        <small class="text-muted">${data.user} unidades vendidas </small>
-        </div>
-        
-               
-        </div>
-           
-</div>` }} 
-showComment(item);
+        commentsContainer.innerHTML +=
+            `<br/>
+        <div class="col-md-8">            
+            <div class ="d-flex w-100 justify-content-between">
+                 <div class="col-md-6">
+                    <p class="mb-1">${data.score}</p>
+                    <p class="mb-1"> ${data.description}</p>
+                    <p class="mb-1"> ${data.dateTime}</p>
+                    <small class="text-muted">${data.user} </small>
+                </div>                 
+            </div>
+        </div>`}
+}
+
 
