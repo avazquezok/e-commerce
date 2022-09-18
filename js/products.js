@@ -2,6 +2,8 @@
 let sortAscButton = document.getElementById("sortPriceAsc");
 let sortDescButton = document.getElementById("sortPriceDesc");
 let sortByCountButton = document.getElementById("sortByCount"); 
+let filterButton = document.getElementById("rangeFilterCount");
+let cleanFilterButton = document.getElementById("cleanFilterButton");
 
 
 //get the ID of the currentCategoriesArray
@@ -39,6 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
             showData(data.products);
 
         })
+       // filterButton.addEventListener("click", function(){
+          //  priceFilter(data.products);
+
     });
 })
 
@@ -87,3 +92,15 @@ function sortByCount(dataArray) {
     dataArray.sort((a, b) => {  
         return b.soldCount- a.soldCount;
     })}
+
+    
+function priceFilter(dataArray) {
+
+    let minFilter = document.getElementById("rangeFilterCountMin").value;
+    let maxFilter = document.getElementById("rangeFilterCountMax").value;
+    data.cost.filter((data) => data.cost >= minFilter && data.cost <= maxFilter)
+}
+
+ 
+      
+  

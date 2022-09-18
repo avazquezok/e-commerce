@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -38,11 +39,20 @@
   </nav>
   <main>
     <div class="container">
-      <div id="productsInfoContainer">          
+      <div id="productsInfoContainer">
       </div>
       <div id="imagesContainer">
       </div>
       <div id="commentsContainer">
+      </div>
+      <div id="addCommentsContainer">
+        <form action="">
+          <label for="addComment">Comment</label>
+          <input type="text" id="userComment" class="form-control" placeholder="...">
+          <label for="userScore">Score (1-5):</label>
+          <input type="number" id="userScore" name="userScore" min="1" max="5">
+          <input type="submit" class="btn btn-default" value="Add Comment" id="submitComment">
+        </form>
       </div>
     </div>
   </main>

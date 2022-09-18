@@ -4,6 +4,8 @@ let productInfoID = localStorage.getItem("productInfoID");
 let container = document.getElementById("productsInfoContainer");
 let commentsContainer = document.getElementById("commentsContainer");
 let imagesContainer = document.getElementById("imagesContainer");
+let addCommentsContainer = document.getElementById("addCommentsContainer");
+let submitComment = document.getElementById("submitComment");
 
 console.log(productInfoID);
 
@@ -31,7 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }).then(function (item) {
         console.log("bbb")
         showComment(item);
-
+        submitComment.addEventListener("click", function(e) {
+            preventDefault(e);
+            addComment();
     })
 }
 )
@@ -47,20 +51,20 @@ function showData(item) {
                     <p class="mb-0">${item.description}</p>
                     <p class="mb-0"> ${item.cost} ${item.currency}</p>
                     <small class="text-muted">${item.soldCount} unidades vendidas </small>
-                </div>    
+                    </div>    
          </div>        
     </div>`
 }
 
 function showImages(item) {
-
+    
     imagesContainer.innerHTML +=
         `<div id="controlsCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div id="containerCarousel" class="carousel-inner">
+        <div id="containerCarousel" class="carousel-inner">
             </div>
             </div>
             `
-            ;
+        ;
     const containerCarousel = document.getElementById('containerCarousel');
     for (images of item.images) {
 
@@ -68,15 +72,15 @@ function showImages(item) {
             `<div class="carousel-item">
             <img class="d-block w-100" src="${images}" alt="First slide">
         </div>`;
-            }
-            const controlsCarousel = document.getElementById('controlsCarousel')
+    }
+    const controlsCarousel = document.getElementById('controlsCarousel')
 
     controlsCarousel.innerHTML +=
         `
         <button class="carousel-control-prev" type="button" data-bs-target="#controlsCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
-      </button>
+        </button>
       <button class="carousel-control-next" type="button" data-bs-target="#controlsCarousel" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
@@ -93,15 +97,56 @@ function showComment(item) {
         commentsContainer.innerHTML +=
             `<br/>
         <div class="col-md-8">            
-            <div class ="d-flex w-100 justify-content-between">
-                 <div class="col-md-6">
-                    <p class="mb-1">${data.score}</p>
+        <div class ="d-flex w-100 justify-content-between">
+                 
+        <div class="stars"> 
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span> </div> 
+                        </div>
                     <p class="mb-1"> ${data.description}</p>
                     <p class="mb-1"> ${data.dateTime}</p>
                     <small class="text-muted">${data.user} </small>
-                </div>                 
-            </div>
+                    </div>                 
+                    
         </div>`}
-}
-
-
+    const star = document.getElementsByClassName("stars")
+    for (let i = 0; i < star.length; i++) {
+        for (let f = 0; f < star[i].children.length; f++)
+            if (f < item[i].score) {
+                star[i].children[f].classList.add("checked")
+            }
+        }
+    }
+function addComment(){  
+    console.log("submit comment");
+    let userComment = document.getElementById("userComment");
+    let userScore = document.getElementById("userScore");
+    let dateTime = new Date(year, month, day, hours, minutes, seconds);
+   
+    commentsContainer.innerHTML +=
+    console.log("antesdelInner")` <div class="col-md-8">            
+    <div class ="d-flex w-100 justify-content-between">
+         
+            <div class="stars"> 
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span> </div> 
+                </div>
+            <p class="mb-1"> ${userComment}</p>
+            <p class="mb-1"> ${dateTime}</p>
+            <small class="text-muted">${userEmail} </small>
+        </div>                 
+   
+</div>`
+const star = document.getElementsByClassName("stars")
+for (let i = 0; i < star.length; i++) {
+for (let f = 0; f < star[i].children.length; f++)
+    if (f < item[i].score) {
+        star[i].children[f].classList.add("checked")
+    }
+}}})
