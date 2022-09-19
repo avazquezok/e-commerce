@@ -45,13 +45,15 @@
       </div>
       <div id="commentsContainer">
       </div>
-      <div id="addCommentsContainer">
+      <div id="addCommentsContainer" class="form-floating mb-3">
         <form action="">
-          <label for="addComment">Comment</label>
+          <label for="addComment" class="form-control">Comment</label>
           <input type="text" id="userComment" class="form-control" placeholder="...">
-          <label for="userScore">Score (1-5):</label>
-          <input type="number" id="userScore" name="userScore" min="1" max="5">
-          <input type="submit" class="btn btn-default" value="Add Comment" id="submitComment">
+        </div>
+        <div class="form-floating">
+          <label for="userScore"></label>
+          <input type="number" id="userScore" class="form-control" name="userScore" min="1" max="5" placeholder="Score from 1 to 5">
+          <input type="submit" class="btn btn-dark" value="Add Comment" id="submitComment">
         </form>
       </div>
     </div>

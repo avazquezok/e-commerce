@@ -70,7 +70,7 @@ function showData(dataArray) {
 
 showData()
 
-//set product category and redirect to products-info
+//set product/id and redirect to products-info
 function setProductInfoID(id) {
     localStorage.setItem("productInfoID", id);
     window.location = "product-info.html"

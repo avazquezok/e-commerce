@@ -33,14 +33,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }).then(function (item) {
         console.log("bbb")
         showComment(item);
-        submitComment.addEventListener("click", function(e) {
-            preventDefault(e);
-            addComment();
-    })
-}
-)
-
-function showData(item) {
+    }
+    )
+    
+    submitComment.addEventListener("click", function(e) {
+        preventDefault(e);
+        addComment();
+})
+    function showData(item) {
 
     container.innerHTML += `  
     <br/>              
@@ -146,7 +146,7 @@ function addComment(){
 const star = document.getElementsByClassName("stars")
 for (let i = 0; i < star.length; i++) {
 for (let f = 0; f < star[i].children.length; f++)
-    if (f < item[i].score) {
+    if (f < item[i].userScore) {
         star[i].children[f].classList.add("checked")
     }
 }}})
