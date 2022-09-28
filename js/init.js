@@ -13,38 +13,49 @@ let containerNav = document.getElementById("navbarNav");
 
 //show userEmail in all html top nav
 document.addEventListener("DOMContentLoaded", function () {
-    containerNav.innerHTML += `<li class = "nav-link"><a>${userEmail}</a></li>`;
-
+  containerNav.innerHTML += `<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+Menu    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="my-profile.html">profile</a></li>
+      <li><a class="dropdown-item" href="cart.html">cart</a></li>
+      <li><a class="dropdown-item" onclick="clearEmail()" href="index.html" >log out</a></li>
+    </ul>
+  </div>`
+  function clearEmail() {
+    localStorage.removeItem('email');
+    console.log(dasda)
+  }
 })
-let showSpinner = function(){
+let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
 }
 
-let hideSpinner = function(){
+let hideSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-let getJSONData = function(url){
-    let result = {};
-    showSpinner();
-    return fetch(url)
+let getJSONData = function (url) {
+  let result = {};
+  showSpinner();
+  return fetch(url)
     .then(response => {
       if (response.ok) {
         return response.json();
-      }else{
+      } else {
         throw Error(response.statusText);
       }
     })
-    .then(function(response) {
-          result.status = 'ok';
-          result.data = response;
-          hideSpinner();
-          return result;
+    .then(function (response) {
+      result.status = 'ok';
+      result.data = response;
+      hideSpinner();
+      return result;
     })
-    .catch(function(error) {
-        result.status = 'error';
-        result.data = error;
-        hideSpinner();
-        return result;
+    .catch(function (error) {
+      result.status = 'error';
+      result.data = error;
+      hideSpinner();
+      return result;
     });
 }
