@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(data);
         showData(data);
         showImages(data);
+        showRelatedProducts(data);
         console.log("")
 
     })
@@ -34,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }).then(function (item) {
         console.log("bbb")
         showComment(item);
-        showRelatedProducts(item);
     }
     )
 
@@ -42,10 +42,10 @@ document.addEventListener("DOMContentLoaded", function () {
         preventDefault(e);
         addComment();
     })
+})
+function showData(item) {
 
-    function showData(item) {
-
-        container.innerHTML += `  
+    container.innerHTML += `  
     <br/>              
     <div class="col-md-8">
        <h1 class="title mb-6">${item.name}</h1>
@@ -57,29 +57,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>    
          </div>        
     </div>`
-    }
+}
 
-    function showImages(item) {
+function showImages(item) {
 
-        imagesContainer.innerHTML +=
-            `<div id="controlsCarousel" class="carousel slide" data-bs-ride="carousel">
+    imagesContainer.innerHTML +=
+        `<div id="controlsCarousel" class="carousel slide" data-bs-ride="carousel">
         <div id="containerCarousel" class="carousel-inner">
             </div>
             </div>
             `
-            ;
-        const containerCarousel = document.getElementById('containerCarousel');
-        for (images of item.images) {
+        ;
+    const containerCarousel = document.getElementById('containerCarousel');
+    for (images of item.images) {
 
-            containerCarousel.innerHTML +=
-                `<div class="carousel-item">
+        containerCarousel.innerHTML +=
+            `<div class="carousel-item">
             <img class="d-block w-100" src="${images}" alt="First slide">
         </div>`;
-        }
-        const controlsCarousel = document.getElementById('controlsCarousel')
+    }
+    const controlsCarousel = document.getElementById('controlsCarousel')
 
-        controlsCarousel.innerHTML +=
-            `
+    controlsCarousel.innerHTML +=
+        `
         <button class="carousel-control-prev" type="button" data-bs-target="#controlsCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -90,20 +90,20 @@ document.addEventListener("DOMContentLoaded", function () {
       </button>
        
   `;
-        const active = document.getElementsByClassName('carousel-item')
-        active[0].classList.add('active')
+    const active = document.getElementsByClassName('carousel-item')
+    active[0].classList.add('active')
+}
+function showRelatedProducts(item) {
+    for (let data of item.relatedProducts) {
+        releatedProductsContainer.innerHTML += `<p><strong>${data.name}</strong></p>`;
     }
-    function showRelatedProducts(item) {
-        for (relatedProducts of item) {
-            releatedProductsContainer.innerHTML += `<p><strong>${item.name}</strong></p>`;
-        }
-    }
+}
 
-    function showComment(item) {
+function showComment(item) {
 
-        for (const data of item) {
-            commentsContainer.innerHTML +=
-                `<br/>
+    for (const data of item) {
+        commentsContainer.innerHTML +=
+            `<br/>
         <div class="col-md-8">            
         <div class ="d-flex w-100 justify-content-between">
                  
@@ -120,22 +120,23 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>                 
                     
         </div>`}
-        const star = document.getElementsByClassName("stars")
-        for (let i = 0; i < star.length; i++) {
-            for (let f = 0; f < star[i].children.length; f++)
-                if (f < item[i].score) {
-                    star[i].children[f].classList.add("checked")
-                }
-        }
+    const star = document.getElementsByClassName("stars")
+    for (let i = 0; i < star.length; i++) {
+        for (let f = 0; f < star[i].children.length; f++)
+            if (f < item[i].score) {
+                star[i].children[f].classList.add("checked")
+            }
     }
-    function addComment() {
-        console.log("submit comment");
-        let userComment = document.getElementById("userComment");
-        let userScore = document.getElementById("userScore");
-        let dateTime = new Date(year, month, day, hours, minutes, seconds);
+}
 
-        commentsContainer.innerHTML +=
-            console.log("antesdelInner")` <div class="col-md-8">            
+function addComment() {
+    console.log("submit comment");
+    let userComment = document.getElementById("userComment");
+    let userScore = document.getElementById("userScore");
+    let dateTime = new Date(year, month, day, hours, minutes, seconds);
+
+    commentsContainer.innerHTML +=
+        console.log("antesdelInner")` <div class="col-md-8">            
     <div class ="d-flex w-100 justify-content-between">
          
             <div class="stars"> 
@@ -151,12 +152,11 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>                 
    
 </div>`
-        const star = document.getElementsByClassName("stars")
-        for (let i = 0; i < star.length; i++) {
-            for (let f = 0; f < star[i].children.length; f++)
-                if (f < item[i].userScore) {
-                    star[i].children[f].classList.add("checked")
-                }
-        }
+    const star = document.getElementsByClassName("stars")
+    for (let i = 0; i < star.length; i++) {
+        for (let f = 0; f < star[i].children.length; f++)
+            if (f < item[i].userScore) {
+                star[i].children[f].classList.add("checked")
+            }
     }
-})
+}

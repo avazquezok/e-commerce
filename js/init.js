@@ -11,7 +11,7 @@ const EXT_TYPE = ".json";
 let userEmail = localStorage.getItem("email");
 let containerNav = document.getElementById("navbarNav");
 
-//show userEmail in all html top nav
+//dropdown menu 
 document.addEventListener("DOMContentLoaded", function () {
   containerNav.innerHTML += `<div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -19,13 +19,21 @@ Menu    </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
       <li><a class="dropdown-item" href="my-profile.html">profile</a></li>
       <li><a class="dropdown-item" href="cart.html">cart</a></li>
-      <li><a class="dropdown-item" onclick="clearEmail()" href="index.html" >log out</a></li>
+      <li><a class="dropdown-item" href="index.html">log out</a></li>
     </ul>
   </div>`
-  function clearEmail() {
-    localStorage.removeItem('email');
-    console.log(dasda)
-  }
+
+const dropdownMenu = document.getElementsByClassName("dropdown-item")  ;
+dropdownMenu[2].setAttribute("id", "logout");
+let logoutButton = document.getElementById("logout");
+
+logoutButton.addEventListener("click", function (evt){
+  localStorage.removeItem('email');
+  location.href = "index.html"
+
+})
+
+
 })
 let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";

@@ -1,7 +1,7 @@
 //buttons of sorting functions
 let sortAscButton = document.getElementById("sortPriceAsc");
 let sortDescButton = document.getElementById("sortPriceDesc");
-let sortByCountButton = document.getElementById("sortByCount"); 
+let sortByCountButton = document.getElementById("sortByCount");
 let filterButton = document.getElementById("rangeFilterCount");
 let cleanFilterButton = document.getElementById("cleanFilterButton");
 
@@ -23,30 +23,30 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(data.products);
         showData(data.products);
 
-        sortAscButton.addEventListener("click", function(){
+        sortAscButton.addEventListener("click", function () {
             sortPriceAsc(data.products);
             container.innerHTML = "";
             showData(data.products);
 
         })
-        sortDescButton.addEventListener("click", function(){
+        sortDescButton.addEventListener("click", function () {
             sortPriceDesc(data.products);
             container.innerHTML = "";
             showData(data.products);
 
         })
-        sortByCountButton.addEventListener("click", function(){
+        sortByCountButton.addEventListener("click", function () {
             sortByCount(data.products);
             container.innerHTML = "";
             showData(data.products);
 
         })
-       // filterButton.addEventListener("click", function(){
-          //  priceFilter(data.products);
+        filterButton.addEventListener("click", function () {
+            priceFilter(data.products);
 
-    });
-})
-
+        });
+    })
+});
 //show products
 function showData(dataArray) {
     for (const item of dataArray) {
@@ -79,28 +79,28 @@ function setProductInfoID(id) {
 function sortPriceAsc(dataArray) {
     dataArray.sort((a, b) => {
         return b.cost - a.cost;
-      });
+    });
 }
 
 function sortPriceDesc(dataArray) {
     dataArray.sort((a, b) => {
         return a.cost - b.cost;
-      });
+    });
 }
 
-function sortByCount(dataArray) {   
-    dataArray.sort((a, b) => {  
-        return b.soldCount- a.soldCount;
-    })}
+function sortByCount(dataArray) {
+    dataArray.sort((a, b) => {
+        return b.soldCount - a.soldCount;
+    })
+}
 
-    
+
 function priceFilter(dataArray) {
 
     let minFilter = document.getElementById("rangeFilterCountMin").value;
     let maxFilter = document.getElementById("rangeFilterCountMax").value;
-    data.cost.filter((data) => data.cost >= minFilter && data.cost <= maxFilter)
+    dataArray.cost.filter((dataArray) => dataArray.cost >= minFilter && dataArray.cost <= maxFilter)
 }
 
- 
-      
-  
+
+
