@@ -5,7 +5,7 @@ let container = document.getElementById("productsInfoContainer");
 let commentsContainer = document.getElementById("commentsContainer");
 let imagesContainer = document.getElementById("imagesContainer");
 let addCommentsContainer = document.getElementById("addCommentsContainer");
-let releatedProductsContainer = document.getElementById("releatedProductsContainer");
+let relatedProductsContainer = document.getElementById("relatedProductsContainer");
 let submitComment = document.getElementById("submitComment");
 
 console.log(productInfoID);
@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(data);
         showData(data);
         showImages(data);
-        showRelatedProducts(data);
         console.log("")
+        showRelatedProducts(data);
 
     })
     //get comments json from PRODUCT_INFO_COMMENTS_URL
@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(productComment).then(function (response) {
         console.log("sadas")
         return response.json();
-        console.log("dsadsad"); //
     }).then(function (item) {
         console.log("bbb")
         showComment(item);
@@ -39,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     )
 
     submitComment.addEventListener("click", function (e) {
-        preventDefault(e);
+
         addComment();
     })
 })
@@ -73,7 +72,7 @@ function showImages(item) {
 
         containerCarousel.innerHTML +=
             `<div class="carousel-item">
-            <img class="d-block w-100" src="${images}" alt="First slide">
+            <img class="d-block w-60" src="${images}" alt="First slide">
         </div>`;
     }
     const controlsCarousel = document.getElementById('controlsCarousel')
@@ -88,23 +87,39 @@ function showImages(item) {
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
+      <br>
        
   `;
     const active = document.getElementsByClassName('carousel-item')
     active[0].classList.add('active')
 }
 function showRelatedProducts(item) {
+    relatedProductsContainer.innerHTML = `<h4 class="title mb-6">Productos Relacionados</h4>`
     for (let data of item.relatedProducts) {
-        releatedProductsContainer.innerHTML += `<p><strong>${data.name}</strong></p>`;
+        relatedProductsContainer.innerHTML += `
+               <div class="card" style="width: 18rem;" id="${data.id}" onclick="redirectTorelatedProduct(${data.id})">
+        <img src="${data.image}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text" "mb-0">${data.name}.</p>
+        </div>
+      </div>`;
+            
     }
 }
+function redirectTorelatedProduct(id) {
+
+  
+        localStorage.setItem("productInfoID", id);
+        location.reload();
+    }
+
 
 function showComment(item) {
-
+    commentsContainer.innerHTML = `<br>
+<h4 class="title mb-6">Comentarios</h4>`
     for (const data of item) {
         commentsContainer.innerHTML +=
-            `<br/>
-        <div class="col-md-8">            
+            `<div class="col-md-8">            
         <div class ="d-flex w-100 justify-content-between">
                  
         <div class="stars"> 
@@ -120,6 +135,7 @@ function showComment(item) {
                     </div>                 
                     
         </div>`}
+
     const star = document.getElementsByClassName("stars")
     for (let i = 0; i < star.length; i++) {
         for (let f = 0; f < star[i].children.length; f++)
@@ -130,7 +146,6 @@ function showComment(item) {
 }
 
 function addComment() {
-    console.log("submit comment");
     let userComment = document.getElementById("userComment");
     let userScore = document.getElementById("userScore");
     let dateTime = new Date(year, month, day, hours, minutes, seconds);
