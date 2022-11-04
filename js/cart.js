@@ -2,6 +2,18 @@ let cartContainer = document.getElementById("cartContainer");
 let containerCartFotm = document.getElementById("cartForm");
 let cartId = 25801;
 
+let standardShipCost = 0.05;
+let expressShipCost = 0.07;
+let premiumShipCost = 0.015;
+let standardShip = document.getElementById("standard");
+let expressShip = document.getElementById("express");
+let premiumShip = document.getElementById("premium");
+let cartSubTotalContainer = document.getElementById("costoSubtotal");
+let cartCostoEnvioContainer = document.getElementById("costoEnvioContainer");
+let deliveryTypes = document.getElementsByName("deliveryType");
+console.log(deliveryTypes);
+
+
 document.addEventListener("DOMContentLoaded", function () {
   let urlCart = CART_INFO_URL + cartId + EXT_TYPE;
   console.log(urlCart);
@@ -53,10 +65,35 @@ function showCartArticle(item) {
     </div>
     </div>`
   }
- 
+
 }
 function calculateSubTotal(cost, count) {
   let cartSubTotal = document.getElementById("cartSubTotal");
   cartSubTotal.innerHTML = cost * count;
 
 }
+
+function calcularEnvio() {
+  let subTotal = Number(document.getElementById("cartSubtotal").textContent);
+  console.log(subTotal);
+  let deliveryType = deliveryType.SelectedIndex;
+  if (deliveryType == premium)
+    cartCostoEnvioContainer.innerHTML = subTotal * premiumShipCost;
+  else if (deliveryType == express)
+    cartCostoEnvioContainer.innerHTML = subTotal * expressShipCost;
+  else if (deliveryType == standard)
+    cartCostoEnvioContainer.innerHTML = subTotal * standardShip;
+  console.log("llegamos aca")
+}
+
+function calcular1(){
+  console.log(this.value)
+}
+function sumarTotal() {
+
+}
+
+// deliveryType.addEventListener("click", () => {
+//   calcularEnvio()
+ 
+// })
