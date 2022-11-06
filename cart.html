@@ -36,133 +36,133 @@
     </div>
   </nav>
   <main>
-    <h3 class="m-3 text-center">Carrito</h3>
-    <div class="container" id="cartContainer">
-    </div>
-    <div class="container">
-      <div class="container" id="cartForm">
+    <h1 class="m-3 text-center">Carrito</h3>
+      <div class="container" id="cartContainer">
+      </div>
+      <div class="container">
+        <div class="container" id="cartForm">
 
-        <form action="#" method="get" class="row mt-4 needs-validation" novalidate id="">
-          <fieldset>
-            <legend>
-              Tipo de Envio
-            </legend>
-            <div class="mt-3">
-              <input type="radio" name="deliveryType" id="premium" value="premium" class="" onclick="calcular1()" >
-              <label for="premium">Premium 2 a 5 dias(15%)</label>
+          <h2>Tipo de Envio</h2>
+          <div class="mt-3">
+            <input type="radio" name="deliveryType" id="premium" value="0.15" checked>
+            <label for="premium">Premium 2 a 5 dias(15%)</label>
+          </div>
+          <div class="mt-3">
+            <input type="radio" name="deliveryType" id="express" value="0.07">
+            <label for="expres">Expres 5 a 8 dias (7%)</label>
+          </div>
+          <div class="mt-3">
+            <input type="radio" name="deliveryType" id="standard" value="0.05">
+            <label for="standard">Standar 12 a 15 dias (5%)</label>
             </div>
-            <div class="mt-3">
-              <input type="radio" name="deliveryType"  value="express" id="express">
-              <label for="expres">Expres 5 a 8 dias (7%)</label>
-            </div>
-            <div class="mt-3">
-              <input type="radio" name="deliveryType" id="standard" value="standard" >
-              <label for="standard">Standar 12 a 15 dias (5%)</label>
-            </div>
-          </fieldset>
-          </form>
-          <form action="#" method="get" class="row mt-4 needs-validation" novalidate>
-          <fieldset>
-            <legend>
-              Direccion de Envio
-            </legend>
-            <div class="mt-3">
-              <label for="adressStreet">Calle</label>
-              <input type="text" placeholder="ingrese su calle" id="adressStreet" required>
-            </div>
-            <div class="mt-3">
-              <label for="adressNumber">Numero</label>
-              <input type="text" placeholder="ingrese numero de domicilio" id="adressNumber" required>
-            </div>
-            <div class="mt-3">
-              <label for="adressCorner">Esquina</label>
-              <input type="text" placeholder="ingrese esquina" id="adressCorner" required>
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>
-              Costos
-            </legend>
+
             
-            <div class="row-cols-2">
-              <div class="col" id="costoSubtotal">
-                Subtotal
-              </div>
-              <div class="col">
-                Costo unitario del producto por cantidad
-              </div>
-              <div class="col" id="costoEnvioContainer">
-                Costo de envio
-              </div>
-              <div class="col">
-                Segun el tipo de envio
-              </div>
-              <div class="col" id="total">
-                Total ($)
-              </div>
-              <div class="col">
-                Costo unitario del producto por cantidad
+            <br>
+          </div>
+          <div>
+            <h2>Direccion de Envio</h2>
+            <form action="#" method="get" class="row mt-4 needs-validation"  onsubmit="event.preventDefault()" novalidate>
+            <div class="container">
+              <div class="position-relative">
+                <label class="container" for="validationDefault01" type="text">Calle</label>
+              <input class="form-control" type="text" aria-label=".form-control-lg example" value="" id="calle"
+                required>
+                <div class="invalid-feedback">
+                  ingresa una calle
+                </div>
+            </div>
+            <br>
+            <div class="position-relative">
+              <label class="container" type="number">Numero</label>
+              <input class="form-control" type="text" aria-label="default input example" id="numero" required>
+              <div class="invalid-feedback">
+                ingresa un numero
               </div>
             </div>
-          </fieldset>
-          <fielset>
-            <legend>
-              Forma de Pago
-            </legend>
-            <div class="col-sm-12 position-relative d-flex">
-              <button type="button" id="terminosBtn" class="btn btn-link p-0 me-2" data-bs-toggle="modal"
-                data-bs-target="#modalTerminos">
-                Forma de Pago
-              </button>
-              <div class="invalid-feedback w-auto">
-                Debe Elegir una forma de pago
+            <br>
+            <div class="position-relative">
+              <label class="container" type="text">Esquina</label>
+              <input class="form-control" type="text" aria-label=".form-control-sm example" id="esquina" required>
+              <div class="invalid-feedback">
+                ingresa una esquina
               </div>
             </div>
 
-            <div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
+          </div>
+          <br>
+          <div id="costos">
+            <h2>Costos</h2>
+
+          </div>
+          <div class="container" id="cartCostoContainer">
+          </div>
+
+          <div class="container">
+            <h2> Forma de Pago</h2>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="metodoPago">
+              Agregar Metodo de pago
+            </button>
+            <div class="invalid-feedback w-auto">
+              Debe agregar un metodo de pago
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5">
-                      Forma de pago
-                    </h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Metodo de Pago</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
+
                   <div class="modal-body">
-                    <div class="form-check">
-                      <label class="form-check-label" for="tarjetaCredito">Tarjeta de Credito</label>
-                      <input type="checkbox" class="form-check-input" id="tarjetaCredito" name="tarjetaCredito">
-                    
                     <div class="form-control">
-
-                      <label class="form-check-label" for="numeroTarjetaCredito">Numero Tarjeta de Credito</label>
-                      <input type="number" class="form-control" id="numeroTarjetaCredito" minlength="15">
-
-
-                      <label class="form-check-label" for="numeroTarjetaCredito">Codigo Seguridad</label>
-                      <input type="number" class="form-control" id="numeroTarjetaCredito" minlength="6">
-                      
-                      <label class="form-check-label" for="numeroTarjetaCredito">Fecha de Vencimiento</label>
-                        <input type="number" class="form-control" id="numeroTarjetaCredito" minlength="4">
+                      <input class="form-check-input" type="radio" name="opcionDePago" id="tarjetaCredito"onclick="chequearOpcionPago()">
+                      <label class="form-check-label" for="transferenciaBancaria">
+                        Tarjeta De Credito
+                      </label>
+                      <br>
+                      <div>
+                        <label class="container" type="number">Numero de tarjeta</label>
+                        <input class="form-control" type="number" aria-label="default input example" id="numeroTarjeta">
+                      </div>
+                      <div>
+                        <label class="container" type="number">Codigo de seguridad </label>
+                        <input class="form-control" type="number" aria-label="default input example" id="codigoSeguridad">
+                      </div>
+                      <div>
+                        <label class="container" type="text">Vencimiento de tarjeta </label>
+                        <input class="form-control" type="text" aria-label="default input example" id="vencimientoTarjeta">
+                      </div>
                     </div>
+                    <br>
+                    <div class="form-control">
+                      <input class="form-check-input" type="radio" name="opcionDePago" id="transferenciaBancaria"
+                      onclick="chequearOpcionPago()">
+                      <label class="form-check-label" for="transferenciaBancaria">
+                        Transferencia Bancaria
+                      </label>
+                      <label class="container" type="number">Numero de cuenta </label>
+                      <input class="form-control" type="number" aria-label="default input example" id="numeroCuenta">
 
-                  </div>
-
-                  <div class="modal-footer">
-                    
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </fielset>
-          <button class="btn btn-primary" type="submit">Finalizar Compra</button>
+           
+          </div>
+          <hr>
+          <button class="btn btn-primary " type="submit" id="botonComprar">Comprar</button>
+        </div>
       </div>
-    </div>
     </form>
-    </div>
-    </div>
-    </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -181,6 +181,10 @@
       <div></div>
       <div></div>
     </div>
+  </div>
+  <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+    <p>¡ Has comprado con éxito !</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>

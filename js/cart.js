@@ -2,18 +2,7 @@ let cartContainer = document.getElementById("cartContainer");
 let containerCartFotm = document.getElementById("cartForm");
 let cartId = 25801;
 
-let standardShipCost = 0.05;
-let expressShipCost = 0.07;
-let premiumShipCost = 0.015;
-let standardShip = document.getElementById("standard");
-let expressShip = document.getElementById("express");
-let premiumShip = document.getElementById("premium");
-let cartSubTotalContainer = document.getElementById("costoSubtotal");
-let cartCostoEnvioContainer = document.getElementById("costoEnvioContainer");
-let deliveryTypes = document.getElementsByName("deliveryType");
-console.log(deliveryTypes);
-
-
+//Fetch
 document.addEventListener("DOMContentLoaded", function () {
   let urlCart = CART_INFO_URL + cartId + EXT_TYPE;
   console.log(urlCart);
@@ -24,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 })
 
+//Mostrar cart y mostrar calcular
 function showCartArticle(item) {
   for (let data of item.articles) {
     //Armar Tabla
@@ -57,43 +47,112 @@ function showCartArticle(item) {
     ${data.unitCost}${data.currency}
     </div>
     <div class="col border border-secondary p-2 mb-2 border-opacity-25">
-    <input oninput ="calculateSubTotal(${data.unitCost}, this.value)" type="number" class="form-control" id="input" value="${data.count}" min = "0" >    
+    <input oninput ="calculate(${data.unitCost}, this.value)" type="number" class="form-control" id="input" value="${data.count}" min = "0" >    
     </div>
     <div class="col border border-secondary p-2 mb-2 border-opacity-25">
     <span id="cartSubTotal">${data.currency}</span>
     </div>  
     </div>
     </div>`
-  }
 
+    costos.innerHTML += `
+    <ul class="list-group">
+   <li class="list-group-item d-flex justify-content-between align-items-center">
+     Subtotal del producto ${data.currency}
+    </div>
+    </div>
+    <span class="badge bg-primary rounded-pill" id="costosSubtotal" oninput ="calculate(${data.unitCost}, this.value)">${data.unitCost}</span>
+   </li>
+   <li class="list-group-item d-flex justify-content-between align-items-center">
+     Costo del envio ${data.currency}
+     <span class="badge bg-primary rounded-pill" id="cartCostoEnvioContainer"></span>
+   </li>
+   <li class="list-group-item d-flex justify-content-between align-items-center">
+     Total
+     <span class="badge bg-primary rounded-pill" id="total"></span>
+   </li>
+ </ul>
+ <br>`
+  }
 }
-function calculateSubTotal(cost, count) {
+//calcular costos
+function calculate(cost, count) {
   let cartSubTotal = document.getElementById("cartSubTotal");
   cartSubTotal.innerHTML = cost * count;
+  let costosSubtotal = document.getElementById("costosSubtotal");
+  costosSubtotal.innerHTML = cost * count;
+  let deliveryType = document.querySelector("input[name='deliveryType']:checked").value;
+  let cartCostoEnvioContainer = document.getElementById("cartCostoEnvioContainer");
+  cartCostoEnvioContainer.innerHTML = (cost * count) * deliveryType;
+  let total = document.getElementById("total");
+  total.innerHTML = Number(cartCostoEnvioContainer.innerHTML) + Number(costosSubtotal.innerHTML);
 
 }
+//Validar
+let tarjetaCredito = document.getElementById("tarjetaCredito");
+let transferenciaBancaria = document.getElementById("transferenciaBancaria");
+let numeroCuenta = document.getElementById("numeroCuenta");
+let numeroTarjeta = document.getElementById("numeroTarjeta");
+let codigoSeguridad = document.getElementById("codigoSeguridad");
+let vencimientoTarjeta = document.getElementById("vencimientoTarjeta");
+let botonMetodoPago = document.getElementById("metodoPago");
+let botonComprar = document.getElementById("botonComprar");
 
-function calcularEnvio() {
-  let subTotal = Number(document.getElementById("cartSubtotal").textContent);
-  console.log(subTotal);
-  let deliveryType = deliveryType.SelectedIndex;
-  if (deliveryType == premium)
-    cartCostoEnvioContainer.innerHTML = subTotal * premiumShipCost;
-  else if (deliveryType == express)
-    cartCostoEnvioContainer.innerHTML = subTotal * expressShipCost;
-  else if (deliveryType == standard)
-    cartCostoEnvioContainer.innerHTML = subTotal * standardShip;
-  console.log("llegamos aca")
+
+function chequearOpcionPago() {
+  if (tarjetaCredito.checked) {
+    
+    numeroTarjeta.disabled = false;
+    codigoSeguridad.disabled = false;
+    vencimientoTarjeta.disabled = false;
+    numeroCuenta.disabled = true;
+    numeroCuenta.required = false;
+    numeroTarjeta.required = true;
+    codigoSeguridad.required = true;
+    vencimientoTarjeta.required = true;
+
+  } else if (transferenciaBancaria.checked) {
+    
+    numeroCuenta.disabled = false;
+    numeroTarjeta.disabled = true;
+    codigoSeguridad.disabled = true;
+    vencimientoTarjeta.disabled = true;
+    numeroCuenta.required = true;
+    numeroTarjeta.required = false;
+    codigoSeguridad.required = false;
+    vencimientoTarjeta.required = false;
+    
+  }
+}
+function showAlertSuccess() {
+  document.getElementById("alert-success").classList.add("show");
 }
 
-function calcular1(){
-  console.log(this.value)
-}
-function sumarTotal() {
+("use strict");
+const forms = document.querySelectorAll(".needs-validation");
+console.log(forms);
+Array.from(forms).forEach((form) => {
+  form.addEventListener(
+    "submit",
+    (event) => {
+      if(!transferenciaBancaria.checked  && !tarjetaCredito.checked) {
+      botonMetodoPago.classList.add("is-invalid")
+      botonMetodoPago.classList.add("text-danger")
+    } else {
+    botonMetodoPago.classList.remove("is-invalid");
+  botonMetodoPago.classList.remove("text-danger");
 
-}
 
-// deliveryType.addEventListener("click", () => {
-//   calcularEnvio()
- 
-// })
+    }
+      if (form.checkValidity()) {
+    return showAlertSuccess();
+  }
+  if (!form.checkValidity()) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  form.classList.add("was-validated");
+},
+  false
+);
+});
