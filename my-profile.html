@@ -52,31 +52,27 @@
   </nav>
   <main>
     <div class="container">
-      <h2>Perfil</h2>
-      <form>
-        
-      <div class="input-group">
-        <label class="container" type="text">Primer Nombre</label>
-        <input class="container" type="text" aria-label="default input example" requiered id="primerNombre">
-        <label class="container" type="text">Segundo Nombre</label>
-        <input class="container" type="text" aria-label="default input example" id="segundoNombre">
-      </div>
-      <div class="input-group">
-        <label class="container" type="text">Primer Apellido</label>
-        <input class="container" type="text" aria-label="default input example" requiered id="primerApellido">
-        <label class="container" type="text">Segundo Apellido</label>
-        <input class="container" type="text" aria-label="default input example" id="segundoApellido">
-      </div>
-      <div class="input-group">
-        <label class="container" type="text">Email</label>
-        <input class="container" type="email" aria-label="default input example" requiered id="email">
-        <label class="container" type="text">Telefono de Contacto</label>
-        <input class="container" type="number" aria-label="default input example" id="telefonoContacto">
-      </div>
-      <div>
-        <button type="button" class="btn btn-primary" id="guardarCambios">Guardar Cambios</button>
-      </div>
-      </form>
+      <br>
+      <h2 class="text-center">Perfil</h2>
+      <form novalidate class="needs-validation" onsubmit="event.preventDefault()">
+        <label for="primerNombre" class="col-form-label">Primer Nombre</label>
+        <input type="text" aria-label="default input example" required id="primerNombre" class="form-control">
+        <label class="col-form-label">Segundo Nombre</label>
+        <input type="text" aria-label="default input example" id="segundoNombre" class="form-control">
+        <br>
+        <label class="col-form-label">Primer Apellido</label>
+        <input type="text" aria-label="default input example" required id="primerApellido" class="form-control ">
+        <label class="col-form-label">Segundo Apellido</label>
+        <input type="text" aria-label="default input example" id="segundoApellido" class="form-control ">
+        <br>
+        <label class="col-form-label">Email</label>
+        <input type="email" aria-label="default input example" required id="email" class="form-control">
+        <label class="col-form-label">Telefono de Contacto</label>
+        <input type="number" aria-label="default input example" id="telefonoContacto" class="form-control">
+        <br>
+        <button type="submit" class="btn btn-primary" id="guardarCambios">Guardar Cambios</button>
+    </div>
+    </form>
     </div>
   </main>
   <footer class=" text-muted">
