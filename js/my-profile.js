@@ -17,7 +17,7 @@ let inputPrimerApellido = document.getElementById("primerApellido");
 let inputSegundoApellido = document.getElementById("segundoApellido");
 let inputEmail = document.getElementById("email");
 let inputTelefonoContacto = document.getElementById("telefonoContacto");
-let buttonGuardarCambios = document.getElementById("guardarCambios");
+
 
 //guardar perfil en local storage 
 function storageProfileData(primerNombre, segundoNombre, primerApellido, segundoApellido, email, telefonoContacto,) {

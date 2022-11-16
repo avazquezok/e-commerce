@@ -38,7 +38,8 @@
   </nav>
   <main class="pb-5 container">
     <div class="container">
-      <h2>Products</h2>
+      <br>
+      <h2 class="text-center">Products</h2>
       <div class="container">
         <div class="row">
           <div class="col text-end">
@@ -49,13 +50,15 @@
               <label class="btn btn-light" for="sortPriceDesc"><i class="fas fa-sort-amount-down mr-1"></i>$</label>
               <input type="radio" class="btn-check" name="options" id="sortByCount" checked>
               <label class="btn btn-light" for="sortByCount"><i class="fas fa-sort-amount-down mr-1"></i></label>
+              <label class="btn btn-light" for="search"><i class="fas fa-search" id="submitSearch"></i></label>
+              <input type="search" class="btn btn-light" name="search" id="search">
             </div>
           </div>
         </div>
         <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
           <div class="row container p-0 m-0">
             <div class="col">
-              <p class="font-weight-normal text-end my-2">Cant.</p>
+              <p class="font-weight-normal text-end my-2">Rango de Precio</p>
             </div>
             <div class="col">
               <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">

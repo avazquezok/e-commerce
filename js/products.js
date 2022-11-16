@@ -4,6 +4,8 @@ let sortDescButton = document.getElementById("sortPriceDesc");
 let sortByCountButton = document.getElementById("sortByCount");
 let filterButton = document.getElementById("rangeFilterCount");
 let cleanFilterButton = document.getElementById("cleanFilterButton");
+let searchInput = document.getElementById("search");
+let submitSearchButton = document.getElementById("submitSearch");
 
 
 //get the ID of the currentCategoriesArray
@@ -99,6 +101,7 @@ function priceFilter(dataArray) {
 
     let minFilter = document.getElementById("rangeFilterCountMin").value;
     let maxFilter = document.getElementById("rangeFilterCountMax").value;
+    console.log(minFilter)
     dataArray.cost.filter((dataArray) => dataArray.cost >= minFilter && dataArray.cost <= maxFilter)
 }
 
