@@ -2,8 +2,8 @@
 let sortAscButton = document.getElementById("sortPriceAsc");
 let sortDescButton = document.getElementById("sortPriceDesc");
 let sortByCountButton = document.getElementById("sortByCount");
-let filterButton = document.getElementById("rangeFilterCount");
-let cleanFilterButton = document.getElementById("cleanFilterButton");
+let filterButton = document.getElementById("rangeFilterButton");
+let clearFilterButton = document.getElementById("clearRangeButton");
 let searchInput = document.getElementById("search");
 
 //get the ID of the currentCategoriesArray
@@ -51,6 +51,10 @@ document.addEventListener("DOMContentLoaded", function () {
             container.innerHTML = "";
             showData(dataFiltrado);
         });
+        clearFilterButton.addEventListener("click", function () {
+            container.innerHTML = "";
+            showData(data.products);
+        });
     })
 });
 //show products
@@ -74,7 +78,7 @@ function showData(dataArray) {
     }
 }
 
-showData()
+
 
 //set product/id and redirect to products-info
 function setProductInfoID(id) {
@@ -119,11 +123,11 @@ function priceFilter(dataArray) {
 function nameSearch(dataArray) {
     let searchText = document.getElementById("search").value;
 
-    if(searchText){
-        dataArray = dataArray.filter((item) => item.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 )
+    if (searchText) {
+        dataArray = dataArray.filter((item) => item.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1)
     }
 
-    return dataArray;
+    return dataArray;
 }
 
 
