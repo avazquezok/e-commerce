@@ -5,8 +5,6 @@ let sortByCountButton = document.getElementById("sortByCount");
 let filterButton = document.getElementById("rangeFilterCount");
 let cleanFilterButton = document.getElementById("cleanFilterButton");
 let searchInput = document.getElementById("search");
-let submitSearchButton = document.getElementById("submitSearch");
-
 
 //get the ID of the currentCategoriesArray
 let catID = localStorage.getItem("catID");
@@ -44,8 +42,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         })
         filterButton.addEventListener("click", function () {
-            priceFilter(data.products);
-
+            let dataFiltrado = priceFilter(data.products);
+            container.innerHTML = "";
+            showData(dataFiltrado);
+        });
+        searchInput.addEventListener("input", function () {
+            let dataFiltrado = nameSearch(data.products);
+            container.innerHTML = "";
+            showData(dataFiltrado);
         });
     })
 });
@@ -96,13 +100,30 @@ function sortByCount(dataArray) {
     })
 }
 
-
+// filter price function
 function priceFilter(dataArray) {
-
     let minFilter = document.getElementById("rangeFilterCountMin").value;
     let maxFilter = document.getElementById("rangeFilterCountMax").value;
-    console.log(minFilter)
-    dataArray.cost.filter((dataArray) => dataArray.cost >= minFilter && dataArray.cost <= maxFilter)
+
+    if (minFilter) {
+        dataArray = dataArray.filter((dataElem) => dataElem.cost >= minFilter)
+    }
+    if (maxFilter) {
+        dataArray = dataArray.filter((dataElem) => dataElem.cost <= maxFilter)
+    }
+
+    return dataArray;
+}
+
+//search function
+function nameSearch(dataArray) {
+    let searchText = document.getElementById("search").value;
+
+    if(searchText){
+        dataArray = dataArray.filter((item) => item.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 )
+    }
+
+    return dataArray;
 }
 
 
