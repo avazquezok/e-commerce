@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 ${userEmail}    </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li><a class="dropdown-item" href="my-profile.html">profile</a></li>
-      <li><a class="dropdown-item" href="cart.html">cart</a></li>
-      <li><a class="dropdown-item" href="index.html">log out</a></li>
+      <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+      <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
+      <li><a class="dropdown-item" href="index.html">Cerrar Sesion</a></li>
     </ul>
   </div>`
 
