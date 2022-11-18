@@ -48,10 +48,10 @@ function showData(item) {
     <br/>              
     <div class="col-md-8">
        <h1 class="title mb-6">${item.name}</h1>
-        <div class ="d-flex w-100 justify-content-between">
+        <div class ="d-flex w-200 justify-content-between">
                 <div class="col-md-6">
-                    <p class="mb-0">${item.description}</p>
-                    <p class="mb-0"> ${item.cost} ${item.currency}</p>
+                    <h4>${item.description}</h4>
+                    <h4 class="mb-0"> ${item.cost} ${item.currency}</h4>
                     <small class="text-muted">${item.soldCount} unidades vendidas </small>
                 </div>    
          </div>        
@@ -72,7 +72,7 @@ function showImages(item) {
 
         containerCarousel.innerHTML +=
             `<div class="carousel-item">
-            <img class="d-block w-60" src="${images}" alt="First slide">
+            <img class="d-block w-100" src="${images}" alt="First slide">
         </div>`;
     }
     const controlsCarousel = document.getElementById('controlsCarousel')
@@ -94,17 +94,20 @@ function showImages(item) {
     active[0].classList.add('active')
 }
 function showRelatedProducts(item) {
-    relatedProductsContainer.innerHTML = `<h4 class="title mb-6">Productos Relacionados</h4>`
+   
     for (let data of item.relatedProducts) {
         relatedProductsContainer.innerHTML += `
-               <div class="card" style="width: 18rem;" id="${data.id}" onclick="redirectTorelatedProduct(${data.id})">
+        
+               <div class="card mx-2" style="width: 18rem;" id="${data.id}" onclick="redirectTorelatedProduct(${data.id})">
         <img src="${data.image}" class="card-img-top" alt="...">
         <div class="card-body">
           <p class="card-text" "mb-0">${data.name}.</p>
         </div>
-      </div>`;
-            
+      </div>
+      `;
+             
     }
+    
 }
 function redirectTorelatedProduct(id) {
 
@@ -146,12 +149,20 @@ function showComment(item) {
 }
 
 function addComment() {
-    let userComment = document.getElementById("userComment");
-    let userScore = document.getElementById("userScore");
-    let dateTime = new Date(year, month, day, hours, minutes, seconds);
+    let userComment = document.getElementById("userComment").value;
+    let userScore = document.getElementById("userScore").value;
+
+    let today = new Date();
+    let day = String(today.getDate()).padStart(2, '0');
+    let month = String(today.getMonth() + 1).padStart(2, '0');
+    let year = today.getFullYear();
+    let hours = String(today.getHours()).padStart(2, '0');
+    let minutes = String(today.getMinutes()).padStart(2, '0');
+    let seconds = String(today.getSeconds()).padStart(2, '0');
+    let dateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
 
     commentsContainer.innerHTML +=
-        console.log("antesdelInner")` <div class="col-md-8">            
+    `<div class="col-md-8">            
     <div class ="d-flex w-100 justify-content-between">
          
             <div class="stars"> 
@@ -164,14 +175,13 @@ function addComment() {
             <p class="mb-1"> ${userComment}</p>
             <p class="mb-1"> ${dateTime}</p>
             <small class="text-muted">${userEmail} </small>
-        </div>                 
-   
-</div>`
+        </div>
+    </div>`
+
     const star = document.getElementsByClassName("stars")
-    for (let i = 0; i < star.length; i++) {
-        for (let f = 0; f < star[i].children.length; f++)
-            if (f < item[i].userScore) {
-                star[i].children[f].classList.add("checked")
-            }
-    }
+    for (let f = 0; f < star[star.length-1].children.length; f++){
+        if (f < userScore) {
+            star[star.length-1].children[f].classList.add("checked")
+        }
+    }
 }
