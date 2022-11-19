@@ -20,36 +20,36 @@ function showCartArticle(item) {
     cartContainer.innerHTML += `
       <div class="container table text-center">
   <div class="row">
-  <div class="col border border-secondary p-2 mb-2 border-opacity-25">
+  <div class="col border border-dark p-2 mb-2 border-opacity-25">
       
   </div>
-  <div class="col border border-secondary p-2 mb-2 border-opacity-25 ">
+  <div class="col border border-dark p-2 mb-2 border-opacity-25 ">
       Nombre
     </div>
-    <div class="col border border-secondary p-2 mb-2 border-opacity-25">
+    <div class="col border border-dark p-2 mb-2 border-opacity-25">
     Costo
     </div>
-    <div class="col border border-secondary p-2 mb-2 border-opacity-25">
+    <div class="col border border-dark p-2 mb-2 border-opacity-25">
     Cantidad
     </div>
-    <div class="col border border-secondary p-2 mb-2 border-opacity-25">
+    <div class="col border border-dark p-2 mb-2 border-opacity-25">
     Subtotal
     </div>
     </div>
     <div class="row">
-    <div class="col border border-secondary p-2 mb-2 border-opacity-25">
+    <div class="col border border-dark p-2 mb-2 border-opacity-25">
     <img class="img-thumbnail" style="width: 100px;"src="${data.image}">
     </div>
-    <div class="col border border-secondary p-2 mb-2 border-opacity-25">
+    <div class="col border border-dark p-2 mb-2 border-opacity-25">
     ${data.name}
     </div>
-    <div class="col border border-secondary p-2 mb-2 border-opacity-25">
+    <div class="col border border-dark p-2 mb-2 border-opacity-25">
     ${data.unitCost}${data.currency}
     </div>
-    <div class="col border border-secondary p-2 mb-2 border-opacity-25">
+    <div class="col border border-dark p-2 mb-2 border-opacity-25">
     <input oninput ="calculate(${data.unitCost}, this.value)" type="number" class="form-control" id="input" value="${data.count}" min = "0" >    
     </div>
-    <div class="col border border-secondary p-2 mb-2 border-opacity-25">
+    <div class="col border border-dark p-2 mb-2 border-opacity-25">
     <span id="cartSubTotal">${data.currency}</span>
     </div>  
     </div>
@@ -61,15 +61,15 @@ function showCartArticle(item) {
      Subtotal del producto ${data.currency}
     </div>
     </div>
-    <span class="badge bg-primary rounded-pill" id="costosSubtotal" oninput ="calculate(${data.unitCost}, this.value)">${data.unitCost}</span>
+    <span class="badge bg-dark rounded-pill" id="costosSubtotal" oninput ="calculate(${data.unitCost}, this.value)">${data.unitCost}</span>
    </li>
    <li class="list-group-item d-flex justify-content-between align-items-center">
      Costo del envio ${data.currency}
-     <span class="badge bg-primary rounded-pill" id="cartCostoEnvioContainer"></span>
+     <span class="badge bg-dark rounded-pill" id="cartCostoEnvioContainer"></span>
    </li>
    <li class="list-group-item d-flex justify-content-between align-items-center">
      Total
-     <span class="badge bg-primary rounded-pill" id="total"></span>
+     <span class="badge bg-dark rounded-pill" id="total"></span>
    </li>
  </ul>
  <br>`
