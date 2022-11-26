@@ -17,6 +17,8 @@ let inputPrimerApellido = document.getElementById("primerApellido");
 let inputSegundoApellido = document.getElementById("segundoApellido");
 let inputEmail = document.getElementById("email");
 let inputTelefonoContacto = document.getElementById("telefonoContacto");
+let imagenPerfil = document.getElementById("imagenPerfil");
+let containerImagenPerfil = document.getElementById("containerImagenPerfil");
 
 
 //guardar perfil en local storage 
