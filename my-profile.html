@@ -54,6 +54,13 @@
     <div class="container">
       <br>
       <h2 class="text-center">Mi Perfil</h2>
+      
+      <div class="container">
+        <img class="img-thumbnail" src="img\img_perfil.png" id="containerImagenPerfil" width="100"
+          height="100">
+      </div>
+      <br>
+      <div class="container-fluid">
       <form novalidate class="needs-validation" onsubmit="event.preventDefault()">
         <label for="primerNombre" class="col-form-label">Primer Nombre</label>
         <input type="text" aria-label="default input example" required id="primerNombre" class="form-control">
@@ -72,13 +79,12 @@
         <br>
         <label class="col-form-label">Imagen de Perfil</label>
         <input type="file" aria-label="default input example" id="imagenPerfil" class="form-control">
-        <canvas id="containerImagenPerfil">
+        <button type="button" class="btn btn-dark" id="submitImagen">Guardar Imagen</button>
 
-        </canvas>
         <button type="submit" class="btn btn-dark" id="guardarCambios">Guardar Cambios</button>
     </div>
     </form>
-    </div>
+    
   </main>
   <footer class=" text-muted">
     <div class="container">

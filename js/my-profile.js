@@ -19,10 +19,11 @@ let inputEmail = document.getElementById("email");
 let inputTelefonoContacto = document.getElementById("telefonoContacto");
 let imagenPerfil = document.getElementById("imagenPerfil");
 let containerImagenPerfil = document.getElementById("containerImagenPerfil");
+let submitImagen = document.getElementById("submitImagen");
 
 
 //guardar perfil en local storage 
-function storageProfileData(primerNombre, segundoNombre, primerApellido, segundoApellido, email, telefonoContacto,) {
+function storageProfileData(primerNombre, segundoNombre, primerApellido, segundoApellido, email, telefonoContacto) {
     let arrayVacio = [];
     let profile = {
 
@@ -31,7 +32,8 @@ function storageProfileData(primerNombre, segundoNombre, primerApellido, segundo
         primerApellido: primerApellido,
         segundoApellido: segundoApellido,
         telefonoContacto: telefonoContacto,
-        email: email,
+        email: email
+
     }
     arrayVacio.push(profile);
     localStorage.setItem("userProfile", JSON.stringify(arrayVacio));
@@ -41,9 +43,9 @@ function storageProfileData(primerNombre, segundoNombre, primerApellido, segundo
 //Mostrar datos guardados en localStorage
 function showProfileData() {
     let profileDataStored = JSON.parse(localStorage.getItem("userProfile"));
-    if(!profileDataStored) return -1
+    if (!profileDataStored) return -1
 
-    
+
     let { primerNombre, segundoNombre, primerApellido, segundoApellido, email, telefonoContacto } = profileDataStored[0];
     inputPrimerNombre.setAttribute("value", primerNombre);
     inputSegundoNombre.setAttribute("value", segundoNombre);
@@ -52,28 +54,49 @@ function showProfileData() {
     inputEmail.setAttribute("value", email);
     inputTelefonoContacto.setAttribute("value", telefonoContacto);
 }
+
+//funcionalidad imagen perfil
+
+imagenPerfil.addEventListener("change", function () {
+    const file = new FileReader();
+    file.readAsDataURL(imagenPerfil.files[0]);
+    file.addEventListener("load", () => {
+        const url = file.result;
+        console.log(url)
+        localStorage.setItem("imagenPerfil", url)
+    })
+})
+
+submitImagen.addEventListener("click", function () {
+    let containerImagenPerfil = document.getElementById("containerImagenPerfil");
+    const urlImage = localStorage.getItem("imagenPerfil");
+    containerImagenPerfil.src = urlImage;
+    })
+
+    
+
 document.addEventListener("DOMContentLoaded", function () {
     showProfileData();
 })
 
-   
-        'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (form.checkValidity()) {
-                    storageProfileData(inputPrimerNombre.value, inputSegundoNombre.value, inputPrimerApellido.value, inputSegundoApellido.value, inputEmail.value, inputTelefonoContacto.value)
-                }
-                else {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
+'use strict'
 
-                form.classList.add('was-validated')
-            }, false)
-        })
- 
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+const forms = document.querySelectorAll('.needs-validation')
+
+// Loop over them and prevent submission
+Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+        if (form.checkValidity()) {
+            storageProfileData(inputPrimerNombre.value, inputSegundoNombre.value, inputPrimerApellido.value, inputSegundoApellido.value, inputEmail.value, inputTelefonoContacto.value)
+        }
+        else {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+    }, false)
+})

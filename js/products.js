@@ -99,7 +99,7 @@ function sortPriceDesc(dataArray) {
 }
 
 function sortByCount(dataArray) {
-    dataArray.sort((a, b) => {
+    dataArray.sort((a, b) => {  
         return b.soldCount - a.soldCount;
     })
 }
